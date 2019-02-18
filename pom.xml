@@ -15,7 +15,7 @@
             <groupId>org.nd4j</groupId>
             <!-- Use nd4j-native-platform for CPU and nd4j-cuda-8.0-platform or nd4j-cuda-9.2-platform for GPU -->
             <!-- Note: Some use-cases (like Word2Vec work better with CPU) -->
-            <artifactId>nd4j-native-platform</artifactId>
+            <artifactId>nd4j-cuda-9.0-platform</artifactId>
             <version>${dl4j.version}</version>
         </dependency>
         <dependency>
