@@ -1,0 +1,68 @@
+Deeplearning4j OOM Exception Encountered for MultiLayerNetwork
+Timestamp:                              2019-02-19 19:22:44.371
+Thread ID                               1
+Thread Name                             main
+
+
+Stack Trace:
+java.lang.OutOfMemoryError: Cannot allocate new FloatPointer(289311440): totalBytes = 1274M, physicalBytes = 1906M
+	at org.bytedeco.javacpp.FloatPointer.<init>(FloatPointer.java:76)
+	at org.nd4j.linalg.api.buffer.BaseDataBuffer.<init>(BaseDataBuffer.java:610)
+	at org.nd4j.linalg.api.buffer.FloatBuffer.<init>(FloatBuffer.java:54)
+	at org.nd4j.linalg.api.buffer.factory.DefaultDataBufferFactory.createFloat(DefaultDataBufferFactory.java:256)
+	at org.nd4j.linalg.factory.Nd4j.createBuffer(Nd4j.java:1492)
+	at org.nd4j.linalg.api.ndarray.BaseNDArray.<init>(BaseNDArray.java:280)
+	at org.nd4j.linalg.cpu.nativecpu.NDArray.<init>(NDArray.java:156)
+	at org.nd4j.linalg.cpu.nativecpu.CpuNDArrayFactory.createUninitialized(CpuNDArrayFactory.java:177)
+	at org.nd4j.linalg.factory.Nd4j.createUninitialized(Nd4j.java:4433)
+	at org.deeplearning4j.nn.updater.BaseMultiLayerUpdater.<init>(BaseMultiLayerUpdater.java:153)
+	at org.deeplearning4j.nn.updater.MultiLayerUpdater.<init>(MultiLayerUpdater.java:45)
+	at org.deeplearning4j.nn.updater.MultiLayerUpdater.<init>(MultiLayerUpdater.java:41)
+	at org.deeplearning4j.nn.updater.UpdaterCreator.getUpdater(UpdaterCreator.java:36)
+	at org.deeplearning4j.optimize.solvers.BaseOptimizer.updateGradientAccordingToParams(BaseOptimizer.java:290)
+	at org.deeplearning4j.optimize.solvers.BaseOptimizer.gradientAndScore(BaseOptimizer.java:172)
+	at org.deeplearning4j.optimize.solvers.StochasticGradientDescent.optimize(StochasticGradientDescent.java:51)
+	at org.deeplearning4j.optimize.Solver.optimize(Solver.java:52)
+	at org.deeplearning4j.nn.multilayer.MultiLayerNetwork.fitHelper(MultiLayerNetwork.java:2148)
+	at org.deeplearning4j.nn.multilayer.MultiLayerNetwork.fit(MultiLayerNetwork.java:2105)
+	at org.deeplearning4j.nn.multilayer.MultiLayerNetwork.fit(MultiLayerNetwork.java:2170)
+	at org.deeplearning4j.earlystopping.trainer.EarlyStoppingTrainer.fit(EarlyStoppingTrainer.java:57)
+	at org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer.fit(BaseEarlyStoppingTrainer.java:120)
+	at org.deeplearning4j.TinyImageNet.main(TinyImageNet.java:81)
+Caused by: java.lang.OutOfMemoryError: Failed to allocate memory within limits: totalBytes (1274M + 1103M) > maxBytes (1810M)
+	at org.bytedeco.javacpp.Pointer.deallocator(Pointer.java:584)
+	at org.bytedeco.javacpp.Pointer.init(Pointer.java:124)
+	at org.bytedeco.javacpp.FloatPointer.allocateArray(Native Method)
+	at org.bytedeco.javacpp.FloatPointer.<init>(FloatPointer.java:68)
+	... 22 more
+
+
+<Error generating network memory status information section>java.lang.OutOfMemoryError: Cannot allocate new FloatPointer(289311440): totalBytes = 1274M, physicalBytes = 1917M
+	at org.bytedeco.javacpp.FloatPointer.<init>(FloatPointer.java:76)
+	at org.nd4j.linalg.api.buffer.BaseDataBuffer.<init>(BaseDataBuffer.java:610)
+	at org.nd4j.linalg.api.buffer.FloatBuffer.<init>(FloatBuffer.java:54)
+	at org.nd4j.linalg.api.buffer.factory.DefaultDataBufferFactory.createFloat(DefaultDataBufferFactory.java:256)
+	at org.nd4j.linalg.factory.Nd4j.createBuffer(Nd4j.java:1492)
+	at org.nd4j.linalg.api.ndarray.BaseNDArray.<init>(BaseNDArray.java:280)
+	at org.nd4j.linalg.cpu.nativecpu.NDArray.<init>(NDArray.java:156)
+	at org.nd4j.linalg.cpu.nativecpu.CpuNDArrayFactory.createUninitialized(CpuNDArrayFactory.java:177)
+	at org.nd4j.linalg.factory.Nd4j.createUninitialized(Nd4j.java:4433)
+	at org.deeplearning4j.nn.updater.BaseMultiLayerUpdater.<init>(BaseMultiLayerUpdater.java:153)
+	at org.deeplearning4j.nn.updater.MultiLayerUpdater.<init>(MultiLayerUpdater.java:45)
+	at org.deeplearning4j.nn.updater.MultiLayerUpdater.<init>(MultiLayerUpdater.java:41)
+	at org.deeplearning4j.nn.updater.UpdaterCreator.getUpdater(UpdaterCreator.java:36)
+	at org.deeplearning4j.optimize.solvers.BaseOptimizer.getUpdater(BaseOptimizer.java:119)
+	at org.deeplearning4j.nn.multilayer.MultiLayerNetwork.getUpdater(MultiLayerNetwork.java:3052)
+	at org.deeplearning4j.util.CrashReportingUtil.generateMemoryStatus(CrashReportingUtil.java:279)
+	at org.deeplearning4j.util.CrashReportingUtil.writeMemoryCrashDump(CrashReportingUtil.java:160)
+	at org.deeplearning4j.nn.multilayer.MultiLayerNetwork.fit(MultiLayerNetwork.java:2107)
+	at org.deeplearning4j.nn.multilayer.MultiLayerNetwork.fit(MultiLayerNetwork.java:2170)
+	at org.deeplearning4j.earlystopping.trainer.EarlyStoppingTrainer.fit(EarlyStoppingTrainer.java:57)
+	at org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer.fit(BaseEarlyStoppingTrainer.java:120)
+	at org.deeplearning4j.TinyImageNet.main(TinyImageNet.java:81)
+Caused by: java.lang.OutOfMemoryError: Failed to allocate memory within limits: totalBytes (1274M + 1103M) > maxBytes (1810M)
+	at org.bytedeco.javacpp.Pointer.deallocator(Pointer.java:584)
+	at org.bytedeco.javacpp.Pointer.init(Pointer.java:124)
+	at org.bytedeco.javacpp.FloatPointer.allocateArray(Native Method)
+	at org.bytedeco.javacpp.FloatPointer.<init>(FloatPointer.java:68)
+	... 21 more

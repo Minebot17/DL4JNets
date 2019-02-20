@@ -55,6 +55,6 @@ public class GanMnist {
         generator.init();
         generator.addListeners(new ScoreIterationListener(10));
 
-        
+
     }
 }
