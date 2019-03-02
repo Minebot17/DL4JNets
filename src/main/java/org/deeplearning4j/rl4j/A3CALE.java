@@ -101,7 +101,7 @@ public class A3CALE {
         }
 
         //setup the training
-        A3CDiscreteConv<ALEMDP.GameScreen> a3c = new A3CDiscreteConv(mdp, /*ALE_NET_A3C*/ ACPolicy.load("./ale-a3c.model").getNeuralNet(), ALE_HP, ALE_A3C, manager);
+        A3CDiscreteConv<ALEMDP.GameScreen> a3c = new A3CDiscreteConv(mdp, /*ALE_NET_A3C*/ ACPolicy.load("./ale-a3c0.model").getNeuralNet(), ALE_HP, ALE_A3C, manager);
 
         //start the training
         //a3c.train();
