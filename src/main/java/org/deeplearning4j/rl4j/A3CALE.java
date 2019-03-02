@@ -101,10 +101,10 @@ public class A3CALE {
         }
 
         //setup the training
-        A3CDiscreteConv<ALEMDP.GameScreen> a3c = new A3CDiscreteConv(mdp, ALE_NET_A3C /*ACPolicy.load("./ale-a3c0.model").getNeuralNet()*/, ALE_HP, ALE_A3C, manager);
+        A3CDiscreteConv<ALEMDP.GameScreen> a3c = new A3CDiscreteConv(mdp, /*ALE_NET_A3C*/ ACPolicy.load("./ale-a3c.model").getNeuralNet(), ALE_HP, ALE_A3C, manager);
 
         //start the training
-        a3c.train();
+        //a3c.train();
         Scanner sc = new Scanner(System.in);
         System.out.print("Press enter to run");
         sc.nextLine();
@@ -116,7 +116,7 @@ public class A3CALE {
             System.out.println("To run this example, uncomment the \"ale-platform\" dependency in the pom.xml file.");
         }
 
-        a3c.getPolicy().save("./ale-a3c0.model");
+        //a3c.getPolicy().save("./ale-a3c0.model");
         a3c.getPolicy().play(mdp0, ALE_HP);
 
         mdp.close();
