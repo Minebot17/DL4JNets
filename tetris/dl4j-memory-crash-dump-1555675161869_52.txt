@@ -1,0 +1,136 @@
+Deeplearning4j OOM Exception Encountered for ComputationGraph
+Timestamp:                              2019-04-19 15:59:21.869
+Thread ID                               52
+Thread Name                             Thread-40
+
+
+Stack Trace:
+java.lang.OutOfMemoryError: Cannot allocate new PointerPointer(4): totalBytes = 248M, physicalBytes = 3650M
+	at org.bytedeco.javacpp.PointerPointer.<init>(PointerPointer.java:126)
+	at org.nd4j.linalg.jcublas.rng.CudaNativeRandom.getExtraPointers(CudaNativeRandom.java:60)
+	at org.nd4j.linalg.jcublas.rng.CudaNativeRandom.init(CudaNativeRandom.java:52)
+	at org.nd4j.rng.NativeRandom.<init>(NativeRandom.java:95)
+	at org.nd4j.linalg.jcublas.rng.CudaNativeRandom.<init>(CudaNativeRandom.java:47)
+	at org.nd4j.linalg.jcublas.rng.CudaNativeRandom.<init>(CudaNativeRandom.java:43)
+	at org.nd4j.linalg.jcublas.rng.CudaNativeRandom.<init>(CudaNativeRandom.java:39)
+	at sun.reflect.GeneratedConstructorAccessor4.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at java.lang.Class.newInstance(Class.java:442)
+	at org.nd4j.linalg.factory.RandomFactory.getRandom(RandomFactory.java:44)
+	at org.nd4j.linalg.factory.Nd4j.getRandom(Nd4j.java:564)
+	at org.deeplearning4j.nn.layers.recurrent.CudnnLSTMHelper.activate(CudnnLSTMHelper.java:462)
+	at org.deeplearning4j.nn.layers.recurrent.LSTMHelpers.activateHelper(LSTMHelpers.java:206)
+	at org.deeplearning4j.nn.layers.recurrent.LSTM.activateHelper(LSTM.java:163)
+	at org.deeplearning4j.nn.layers.recurrent.LSTM.rnnTimeStep(LSTM.java:202)
+	at org.deeplearning4j.nn.graph.ComputationGraph.outputOfLayersDetached(ComputationGraph.java:2294)
+	at org.deeplearning4j.nn.graph.ComputationGraph.rnnTimeStepHelper(ComputationGraph.java:3367)
+	at org.deeplearning4j.nn.graph.ComputationGraph.rnnTimeStep(ComputationGraph.java:3351)
+	at org.deeplearning4j.rl4j.network.ac.ActorCriticCompGraph.outputAll(ActorCriticCompGraph.java:70)
+	at org.deeplearning4j.rl4j.policy.ACPolicy.nextAction(ACPolicy.java:77)
+	at org.deeplearning4j.rl4j.policy.ACPolicy.nextAction(ACPolicy.java:39)
+	at org.deeplearning4j.rl4j.learning.async.AsyncThreadDiscrete.trainSubEpoch(AsyncThreadDiscrete.java:94)
+	at org.deeplearning4j.rl4j.learning.async.AsyncThread.run(AsyncThread.java:103)
+Caused by: java.lang.OutOfMemoryError: Physical memory usage is too high: physicalBytes (3650M) > maxPhysicalBytes (3620M)
+	at org.bytedeco.javacpp.Pointer.deallocator(Pointer.java:588)
+	at org.bytedeco.javacpp.Pointer.init(Pointer.java:124)
+	at org.bytedeco.javacpp.PointerPointer.allocateArray(Native Method)
+	at org.bytedeco.javacpp.PointerPointer.<init>(PointerPointer.java:118)
+	... 24 more
+
+
+========== Memory Information ==========
+----- Version Information -----
+Deeplearning4j Version                  1.0.0-beta2
+Deeplearning4j CUDA                     deeplearning4j-cuda-9.0
+
+----- System Information -----
+Operating System                        Microsoft Windows 10
+CPU                                     Intel(R) Core(TM) i5-3470 CPU @ 3.20GHz
+CPU Cores - Physical                    4
+CPU Cores - Logical                     4
+Total System Memory                        7.95 GB (8531390464)
+Number of GPUs Detected                 1
+  Name                           CC                Total Memory              Used Memory              Free Memory
+  GeForce GTX 1060 6GB           6.1          6 GB (6442450944)     3.92 GB (4205432013)     2.08 GB (2237018931)
+
+----- ND4J Environment Information -----
+Data Type                               FLOAT
+backend                                 CUDA
+blas.vendor                             CUBLAS
+os                                      Windows 10
+
+----- Memory Configuration -----
+JVM Memory: XMX                            1.77 GB (1897922560)
+JVM Memory: current                         123 MB (128974848)
+JavaCPP Memory: Max Bytes                  1.77 GB (1897922560)
+JavaCPP Memory: Max Physical               3.54 GB (3795845120)
+JavaCPP Memory: Current Bytes            248.47 MB (260538017)
+JavaCPP Memory: Current Physical           3.58 GB (3841675264)
+Periodic GC Enabled                     true
+Periodic GC Frequency                   100 ms
+
+----- Workspace Information -----
+Workspaces: # for current thread        3
+Current thread workspaces:
+  Name                      State       Size                          # Cycles            
+  WS_LAYER_WORKING_MEM      CLOSED             0 B                    8                   
+  WS_LAYER_ACT_0            CLOSED             0 B                    4                   
+  WS_LAYER_ACT_1            CLOSED             0 B                    4                   
+Workspaces total size                          0 B
+
+----- Network Information -----
+Network # Parameters                    151505
+Parameter Memory                         591.82 KB (606020)
+Parameter Gradients Memory               591.82 KB (606020)
+Updater Number of Elements              303010
+Updater Memory                             1.16 MB (1212040)
+Updater Classes:
+  org.nd4j.linalg.learning.AdamUpdater
+Params + Gradient + Updater Memory         1.73 MB (1818060)
+Iteration Count                         0
+Epoch Count                             0
+Backprop Type                           Standard
+Workspace Mode: Training                ENABLED
+Workspace Mode: Inference               ENABLED
+Number of Layers                        9
+Layer Counts
+  DenseLayer                              6
+  LSTM                                    1
+  RnnOutputLayer                          2
+Layer Parameter Breakdown
+  Idx Name                 Layer Type           Layer # Parameters   Layer Parameter Memory
+  1   0                    DenseLayer           20100                  78.52 KB (80400)  
+  2   1                    DenseLayer           10100                  39.45 KB (40400)  
+  3   2                    DenseLayer           10100                  39.45 KB (40400)  
+  4   3                    DenseLayer           10100                  39.45 KB (40400)  
+  5   4                    DenseLayer           10100                  39.45 KB (40400)  
+  6   5                    DenseLayer           10100                  39.45 KB (40400)  
+  7   6                    LSTM                 80400                 314.06 KB (321600) 
+  8   value                RnnOutputLayer       101                       404 B          
+  9   softmax              RnnOutputLayer       404                     1.58 KB (1616)   
+
+----- Layer Helpers - Memory Use -----
+Total Helper Count                      0
+Helper Count w/ Memory                  0
+Total Helper Persistent Memory Use             0 B
+
+----- Network Activations: Inferred Activation Shapes -----
+Current Minibatch Size                  1
+Current Input Shape (Input 0)           [1, 200, 1]
+Idx Name                 Layer Type           Activations Type                           Activations Shape    # Elements   Memory      
+0   input                InputVertex          InputTypeRecurrent(200,timeSeriesLength=1) [1, 200, 1]          200               800 B  
+1   0                    DenseLayer           InputTypeFeedForward(100)                  [1, 100]             100               400 B  
+2   1                    DenseLayer           InputTypeFeedForward(100)                  [1, 100]             100               400 B  
+3   2                    DenseLayer           InputTypeFeedForward(100)                  [1, 100]             100               400 B  
+4   3                    DenseLayer           InputTypeFeedForward(100)                  [1, 100]             100               400 B  
+5   4                    DenseLayer           InputTypeFeedForward(100)                  [1, 100]             100               400 B  
+6   5                    DenseLayer           InputTypeFeedForward(100)                  [1, 100]             100               400 B  
+7   6                    LSTM                 InputTypeRecurrent(100)                    [1, 100, -1]         -100             -400 B  
+8   value                RnnOutputLayer       InputTypeRecurrent(1)                      [1, 1, -1]           -1                 -4 B  
+9   softmax              RnnOutputLayer       InputTypeRecurrent(4)                      [1, 4, -1]           -4                -16 B  
+Total Activations Memory                   2.71 KB (2780)
+Total Activation Gradient Memory           2.73 KB (2800)
+
+----- Network Training Listeners -----
+Number of Listeners                     0
